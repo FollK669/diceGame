@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dicee</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+      <div class="container">
+          <button onclick="randomizeImage()">Roll...</button>
+
+          <div class="dice">
+              <p>Player 1</p>
+              <div id="imageContainer"></div>
+              <img class="img1" src="" />
+          </div>
+
+          <div class="dice">
+              <p>Player 2</p>
+              <div id="imageContainer2"></div>
+              <img class="img2" src="" />
+          </div>
+          <p id="result1"></p>
+        
+        
+      </div>
+
+      <script>
+          function randomizeImage() {
+
+
+              // Willekeurig nummer tussen 1 en 6 genereren
+              var randomNumber = Math.floor(Math.random() * 6) + 1;
+              var randomNumber2 = Math.floor(Math.random() * 6) + 1;
+              // De URL van de afbeelding bepalen op basis van het willekeurige nummer
+
+              var imageUrl = './images/dice' + randomNumber + '.png';
+              var imageUrl2 = './images/dice' + randomNumber2 + '.png';
+              // Het afbeeldingselement maken en instellen van de bron
+
+              var winner = 0;
+
+              var resultElement1 = document.getElementById("result1");
+
+              if (randomNumber > randomNumber2)
+                      {
+                  winner = 1;
+                  resultElement1.textContent = "Player one wint";
+                      }
+              else if (randomNumber < randomNumber2)
+                      {
+                  winner = 2;
+                  resultElement1.textContent = "Player Two wint";
+                      }
+              else
+                      {
+                  winner = 0;
+                  resultElement1.textContent = "Gelijkspel!";
+                      }
+
+
+              var img = document.createElement('img');
+              img.src = imageUrl
+
+              var img2 = document.createElement('img');
+              img2.src = imageUrl2;
+
+              // De afbeelding toevoegen aan de container in de HTML
+              var container = document.getElementById('imageContainer');
+              container.innerHTML = ''; // Verwijder vorige afbeelding
+              container.appendChild(img);
+
+              var container2 = document.getElementById('imageContainer2');
+              container2.innerHTML = ''; // Verwijder vorige afbeelding
+              container2.appendChild(img2);
+          }
+      </script>
+
+  </body>
+</html>
